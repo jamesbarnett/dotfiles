@@ -1,0 +1,9 @@
+--pager=less
+--type-add
+ruby=.haml
+--type-add
+css=.sass,.scss,.css
+--type-add
+js=.js,.coffee
+--type-add
+md=.md
