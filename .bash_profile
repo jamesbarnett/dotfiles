@@ -10,6 +10,7 @@ export SHELL="/bin/bash"
 export GIT_EDITOR="vim -f"
 export GOROOT="/usr/local/go"
 export PATH="/usr/local/sbin:$PATH:$GOROOT/bin"
+export STUDIO_JDK="/System/Library/Frameworks/JavaVM.framework/Home"
 export PYTHONPATH=/usr/local/lib/python2.7:$PYTHONPATH
 export HOMEBREW_GITHUB_API_TOKEN=$(cat $HOME/.homebrew-github-api-token)
 export HILTON_GLOBAL_CLIENT_HEROKU_TOKEN=$(cat $HOME/.hilton-global-client-heroku-token)
