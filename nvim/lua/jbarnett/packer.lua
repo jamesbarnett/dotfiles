@@ -20,9 +20,10 @@ return require('packer').startup(function(use)
 
   use('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
   use('nvim-treesitter/playground')
-  use('theprimeagen/harpoon') 
+  use('theprimeagen/harpoon')
   use('mbbill/undotree')
   use('tpope/vim-fugitive')
+  use('tpope/vim-commentary')
   use {
   'VonHeikemen/lsp-zero.nvim',
   branch = 'v1.x',
@@ -43,6 +44,20 @@ return require('packer').startup(function(use)
     -- Snippets
     {'L3MON4D3/LuaSnip'},             -- Required
     {'rafamadriz/friendly-snippets'}, -- Optional
-  }
+  },
+
+  use({
+  'nvim-neotest/neotest',
+  requires = {
+    'olimorris/neotest-rspec',
+  },
+  config = function()
+    require('neotest').setup({
+      adapters = {
+        require('neotest-rspec'),
+      }
+    })
+  end
+  })
 }
 end)

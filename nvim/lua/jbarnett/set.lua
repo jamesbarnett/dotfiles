@@ -36,4 +36,6 @@ vim.keymap.set("n", "<leader>w", "<cmd>w<CR>")
 vim.keymap.set("n", "<leader>f", function()
     vim.lsp.buf.format()
 end)
+
 vim.keymap.set("i", "jj", "<ESC>")
+vim.keymap.set("n", "<leader><leader>", "<C-^>")
