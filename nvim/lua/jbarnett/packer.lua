@@ -58,6 +58,7 @@ return require('packer').startup(function(use)
       }
     })
   end
-  })
+  }),
+  use 'neovim/nvim-lspconfig'
 }
 end)
