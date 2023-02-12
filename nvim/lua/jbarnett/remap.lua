@@ -24,7 +24,7 @@ vim.keymap.set("n", "N", "Nzzzv")
 -- vim.keymap.set("n", "<leader>vwm", function()
 --   require("vim-with-me").StartVimWithMe()
 -- end)
---
+
 -- vim.keymap.set("n", "<leader>svwm", function()
 --   require("vim-with-me").StopVimWithMe()
 -- end)
@@ -38,7 +38,7 @@ vim.keymap.set("x", "<leader>p", "\"_dP")
 -- vim.keymap.set('n','gd','<cmd>lua vim.lsp.buf.definition()<CR>')
 -- map('n','gD','<cmd>lua vim.lsp.buf.declaration()<CR>')
 -- map('n','gd','<cmd>lua vim.lsp.buf.definition()<CR>')
---
+
 local custom_attach = function(client)
 	print("LSP started.");
 	require'completion'.on_attach(client)
