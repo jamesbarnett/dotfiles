@@ -84,9 +84,16 @@ return require('packer').startup(function(use)
     end
   })
   use('tomblind/local-lua-debugger-vscode')
-	use({ "elixir-tools/elixir-tools.nvim", tag = "stable", requires = { "nvim-lua/plenary.nvim" }})
+	use({ "elixir-tools/elixir-tools.nvim", tag = "stable",
+      requires = { "nvim-lua/plenary.nvim" }})
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
+  use({
+    'goolord/alpha-nvim',
+    config = function ()
+      require'alpha'.setup(require'alpha.themes.dashboard'.config)
+    end
+  })
   if packer_bootstrap then
     require('packer').sync()
   end

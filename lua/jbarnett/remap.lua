@@ -1,6 +1,3 @@
--- vim.g.mapleader = ","
--- vim.g.maplocalleader = ","
---
 -- moves line down
 -- vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 --
@@ -14,11 +11,6 @@ vim.keymap.set("n", "<C-f>", "<C-f>zz", { desc = "Move down half a screen and st
 
 -- go to beginning of file
 vim.keymap.set("n", "<C-b>", "<C-b>zz", { desc = "Move up half a screen and stay centered" })
-
--- No idea what these were supposed to do, but they don't work
--- vim.keymap.set("n", "n", "nzzzv")
---
--- vim.keymap.set("n", "N", "Nzzzv")
 
 -- Vim with me stuff
 -- vim.keymap.set("n", "<leader>vwm", function()
