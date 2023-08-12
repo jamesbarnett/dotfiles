@@ -1,10 +1,11 @@
-vim.opt.guicursor = ""
 vim.opt.nu = true
 vim.opt.relativenumber = true
 
 vim.opt.tabstop = 2
 vim.opt.softtabstop = 2
 vim.opt.shiftwidth = 2
+
+-- We are going to roll without for awhile...
 vim.opt.expandtab = true
 
 vim.opt.smartindent = true
@@ -20,6 +21,12 @@ vim.opt.hlsearch = false
 vim.opt.incsearch = true
 
 vim.opt.termguicolors = true
+-- highlight Cursor guifg=white guibg=black
+-- highlight iCursor guifg=white guibg=steelblue
+
+local cursoropts = "n-v-c-sm:block-Cursor-blinkon100-blink0ff100,"
+cursoropts = cursoropts .. "i-ci-ve:ver25-iCursor-blinkwait175-blinkon200-blinkoff175,r-cr-o:hor20"
+vim.opt.guicursor = cursoropts
 
 vim.opt.scrolloff = 8
 vim.opt.signcolumn = "yes"
@@ -31,11 +38,3 @@ vim.opt.colorcolumn = "80"
 
 vim.g.mapleader = ","
 
-vim.keymap.set("n", "Q", "<nop>")
-vim.keymap.set("n", "<leader>w", "<cmd>w<CR>")
-vim.keymap.set("n", "<leader>f", function()
-    vim.lsp.buf.format()
-end)
-
-vim.keymap.set("i", "jj", "<ESC>")
-vim.keymap.set("n", "<leader><leader>", "<C-^>")
