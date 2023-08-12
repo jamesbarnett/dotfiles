@@ -1,11 +1,8 @@
 [user]
 	name = Jim Barnett
 	email = james.barnett.jr@gmail.com
-[diff]
-[color]
-	ui = true
-[push]
-  default = upstream
+[github]
+	user = jamesbarnett
 [alias]
   st = status
   ci = commit
@@ -43,10 +40,11 @@
   ra = !git r --all
   l = "!bash -c '. ~/.githelpers && pretty_git_log'"
   la = !git l --all
-[merge]
-  tool = vimdiff
-[core]
-	editor = vim -f
-[github]
-	user = jamesbarnett
-	password = !githubpw # this isn't my password
+[credential "https://github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
+[init]
+	defaultBranch = main

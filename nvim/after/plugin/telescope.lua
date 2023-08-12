@@ -8,6 +8,8 @@ vim.keymap.set('n', '<leader>w', ':w<CR>',
 -- I want a way to quickly start working on my config. This is the event handler
 -- for that.
 local edit_vim_config = function()
+  -- Change current directory to config so builtin.find_files is set to look in
+  -- the right place. Parens in Lua are optional (at least sometimes. :))
   vim.cmd ":cd ~/.config/nvim"
 
   builtin.find_files()
@@ -51,4 +53,4 @@ vim.keymap.set('i', '<S-Down>', '<ESC><C-v>j',
                { desc = 'Experimental insert/visual stuff' })
 vim.keymap.set('i', '<S-Up>', '<ESC><C-v>k',
                { desc = 'Experimental insert/visual stuff' })
-vim.keymap.set('n', '<leader><leader>', '<C-^>', { desc = 'Previous/toggle files' })
+
