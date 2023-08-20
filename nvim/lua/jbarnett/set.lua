@@ -38,3 +38,18 @@ vim.opt.colorcolumn = "80"
 
 vim.g.mapleader = ","
 
+vim.g.do_filetype_lua = 1
+
+local api = vim.api
+
+local trimtrailingwhitespace = function(e)
+  local line, col = unpack(api.nvim_win_get_cursor(0))
+  vim.cmd [[:%s/\s\+$//e]]
+  api.nvim_win_set_cursor(0, {line, col})
+end
+
+api.nvim_create_autocmd({"BufWritePre"}, {
+  pattern = "*",
+  callback = trimtrailingwhitespace,
+})
+
