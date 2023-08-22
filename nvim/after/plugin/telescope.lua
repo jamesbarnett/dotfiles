@@ -10,7 +10,7 @@ vim.keymap.set('n', '<leader>w', ':w<CR>',
 local edit_vim_config = function()
   -- Change current directory to config so builtin.find_files is set to look in
   -- the right place. Parens in Lua are optional (at least sometimes. :))
-  vim.cmd ":cd ~/.config/nvim"
+  vim.cmd ":cd ~/.dotfiles/nvim"
 
   builtin.find_files()
 
@@ -35,11 +35,11 @@ vim.keymap.set('n', '<leader>fs', grep_handler)
 
 vim.keymap.set('n', 'Q', '<Nop>')
 
-vim.keymap.set('n', '<C-l>', '<C-W>l', 
+vim.keymap.set('n', '<C-l>', '<C-W>l',
                { desc = 'Move the cursor a window right' })
-vim.keymap.set('n', '<C-h>', '<C-W>h', 
+vim.keymap.set('n', '<C-h>', '<C-W>h',
                { desc = 'Move the cursor a window left' })
-vim.keymap.set('n', '<C-j>', '<C-W>j', 
+vim.keymap.set('n', '<C-j>', '<C-W>j',
                { desc = 'Move the cursor a window down' })
 vim.keymap.set('n', '<C-k>', '<C-W>k',
                { desc = 'Move the cursor a window up' })
@@ -54,3 +54,4 @@ vim.keymap.set('i', '<S-Down>', '<ESC><C-v>j',
 vim.keymap.set('i', '<S-Up>', '<ESC><C-v>k',
                { desc = 'Experimental insert/visual stuff' })
 
+vim.keymap.set('n', '<leader>yff', 'ggVG"+y', { desc = 'Yank entire buffer into +clipboard' })
