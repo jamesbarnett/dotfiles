@@ -15,9 +15,7 @@
   pullff = pull --ff-only
   noff = merge --no-ff
   fa = fetch --all
-  pom = push origin master
   b = branch
-  ds = diff --stat=160,120
   dh1 = diff HEAD~1
   # Divergence (commits we added and commits remote added)
   div = divergence
@@ -41,10 +39,10 @@
   l = "!bash -c '. ~/.githelpers && pretty_git_log'"
   la = !git l --all
 [credential "https://github.com"]
-	helper = 
+	helper =
 	helper = !/usr/bin/gh auth git-credential
 [credential "https://gist.github.com"]
-	helper = 
+	helper =
 	helper = !/usr/bin/gh auth git-credential
 [init]
 	defaultBranch = main
