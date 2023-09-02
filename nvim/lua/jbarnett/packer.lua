@@ -95,7 +95,7 @@ return require('packer').startup(function(use)
     end
   })
   use({'Olical/conjure'})
-
+  use({'benknoble/vim-racket'})
   if packer_bootstrap then
     require('packer').sync()
   end
