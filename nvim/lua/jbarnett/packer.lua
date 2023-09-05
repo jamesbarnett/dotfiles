@@ -96,6 +96,8 @@ return require('packer').startup(function(use)
   })
   use({'Olical/conjure'})
   use({'benknoble/vim-racket'})
+  use({'lfe/vim-lfe'})
+
   if packer_bootstrap then
     require('packer').sync()
   end
