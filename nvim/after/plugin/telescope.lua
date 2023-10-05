@@ -7,13 +7,20 @@ vim.keymap.set('n', '<leader>w', ':w<CR>',
 
 -- I want a way to quickly start working on my config. This is the event handler
 -- for that.
-local edit_vim_config = function()
+local edit_nvim_config = function()
   -- Change current directory to config so builtin.find_files is set to look in
   -- the right place. Parens in Lua are optional (at least sometimes. :))
-  vim.cmd ":cd ~/.dotfiles/nvim"
+  vim.cmd ":cd ~/code/dotfiles/nvim"
 
   builtin.find_files()
+end
 
+local edit_packer = function()
+  vim.cmd ":cd ~/code/dotfiles/nvim/"
+  vim.cmd ":e lua/jbarnett/set.lua"
+  vim.cmd ":e lua/jbarnett/remap.lua"
+  vim.cmd ":e after/plugin/telescope.lua"
+  vim.cmd ":e lua/jbarnett/packer.lua"
 end
 
 local grep_handler = function()
@@ -25,12 +32,16 @@ vim.keymap.set('n', '<leader>t',
                builtin.find_files,
                { desc = "Find files starting in current directory" })
 
-vim.keymap.set('n', '<C-p>', builtin.git_files,
+vim.keymap.set('n', '<leader>p', builtin.git_files,
                { desc = "File files in your git repo" })
 
-vim.keymap.set('n', '<leader>ec', edit_vim_config,
+vim.keymap.set('n', '<leader>qa', edit_nvim_config,
                { desc = "Yer config needs editin'!" })
-
+vim.keymap.set('n', '<leader>qp', edit_packer,
+               { desc = "Edit packer, set, and remap" })
+vim.keymap.set('n', '<A-a>', '^')
+vim.keymap.set('n', '<A-e>', '$')
+vim.keymap.set('n', '<C-p>', '@:')
 vim.keymap.set('n', '<leader>fs', grep_handler)
 
 vim.keymap.set('n', 'Q', '<Nop>')
@@ -55,3 +66,6 @@ vim.keymap.set('i', '<S-Up>', '<ESC><C-v>k',
                { desc = 'Experimental insert/visual stuff' })
 
 vim.keymap.set('n', '<leader>yff', 'ggVG"+y', { desc = 'Yank entire buffer into +clipboard' })
+
+vim.keymap.set("n", "<leader>n", ":bnext<CR>", { desc = "Next buffer" })
+vim.keymap.set("n", "<leader>b", ":bprev<CR>", { desc = "Previous buffer" })

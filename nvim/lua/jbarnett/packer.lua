@@ -90,13 +90,27 @@ return require('packer').startup(function(use)
   -- Put this at the end after all plugins
   use({
     'goolord/alpha-nvim',
-    config = function ()
+    config = function()
       require'alpha'.setup(require'alpha.themes.dashboard'.config)
     end
   })
   use({'Olical/conjure'})
   use({'benknoble/vim-racket'})
   use({'lfe/vim-lfe'})
+  use({
+    "julienvincent/nvim-paredit",
+    config = function()
+      require("nvim-paredit").setup({
+        use_default_keys = true,
+        filetypes = { "clojure", "lisp", },
+        cursor_behaviour = "auto", -- remain, follow, auto
+        indent = {
+          enabled = false,
+          indentor = require("nvim-paredit.indentation.native").indentor,
+        }
+      })
+    end,
+  })
 
   if packer_bootstrap then
     require('packer').sync()
