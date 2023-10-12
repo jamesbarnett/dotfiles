@@ -17,6 +17,9 @@ return require('packer').startup(function(use)
     'nvim-telescope/telescope.nvim', tag = '0.1.2',
     requires = { {'nvim-lua/plenary.nvim'} }
   }
+  use { 'nvim-telescope/telescope-fzf-native.nvim',
+    run = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build'
+  }
   use {
 	  "max397574/better-escape.nvim",
 	  config = function()
@@ -27,8 +30,13 @@ return require('packer').startup(function(use)
 	  "bluz71/vim-nightfly-colors",
 	  as = "nightfly",
 	  config = function()
-		  vim.cmd [[colorscheme nightfly]]
+		  -- vim.cmd [[colorscheme nightfly]]
 	  end
+  })
+  use({'rebelot/kanagawa.nvim',
+    config = function()
+      vim.cmd [[colorscheme kanagawa]]
+    end
   })
   use({
 	  'nvim-treesitter/nvim-treesitter',
@@ -41,7 +49,10 @@ return require('packer').startup(function(use)
   use('theprimeagen/harpoon')
   use('mbbill/undotree')
   use('tpope/vim-fugitive')
+  use('tpope/vim-eunuch')
   use('terrortylor/nvim-comment')
+  use('ggandor/leap.nvim')
+  require('leap').add_default_mappings()
 	use({
 		'VonHeikemen/lsp-zero.nvim',
 		branch = 'v2.x',
@@ -116,5 +127,4 @@ return require('packer').startup(function(use)
     require('packer').sync()
   end
 end)
-
 
