@@ -67,38 +67,36 @@ return require('packer').startup(function(use)
 			},
 			{'williamboman/mason-lspconfig.nvim'}, -- Optional
 
-			-- Autocompletion
-			{'hrsh7th/nvim-cmp'},     -- Required
-			{'hrsh7th/cmp-nvim-lsp'}, -- Required
-			{'L3MON4D3/LuaSnip'},     -- Required
-		}
-	})
-	use('jbyuki/one-small-step-for-vimkind')
-	use('mfussenegger/nvim-dap')
-	use({
-		'glepnir/dashboard-nvim',
-		event = 'VimEnter',
-		config = function()
-			require('dashboard').setup {
-				-- config
-			}
-		end,
-		requires = {'nvim-tree/nvim-web-devicons'}
-	})
+      -- Autocompletion
+      {'hrsh7th/nvim-cmp'},     -- Required
+      {'hrsh7th/cmp-nvim-lsp'}, -- Required
+      {'L3MON4D3/LuaSnip'},     -- Required
+    }
+  })
+  use('jbyuki/one-small-step-for-vimkind')
+  use('mfussenegger/nvim-dap')
+  use({
+    'glepnir/dashboard-nvim',
+    event = 'VimEnter',
+    config = function()
+      require('dashboard').setup {
+        -- config
+      }
+    end,
+    requires = {'nvim-tree/nvim-web-devicons'}
+  })
   use({
     "kylechui/nvim-surround",
     tag = "*", -- Use for stability; omit to use `main` branch for the latest features
     config = function()
-        require("nvim-surround").setup({
-            -- Configuration here, or leave empty to use defaults
-        })
+      require("nvim-surround").setup({
+        -- Configuration here, or leave empty to use defaults
+      })
     end
   })
   use('tomblind/local-lua-debugger-vscode')
-	use({ "elixir-tools/elixir-tools.nvim", tag = "stable",
-      requires = { "nvim-lua/plenary.nvim" }})
-  -- Automatically set up your configuration after cloning packer.nvim
-  -- Put this at the end after all plugins
+  use({ "elixir-tools/elixir-tools.nvim", tag = "stable",
+  requires = { "nvim-lua/plenary.nvim" }})
   use({
     'goolord/alpha-nvim',
     config = function()
@@ -122,6 +120,7 @@ return require('packer').startup(function(use)
       })
     end,
   })
+  use({'krady21/compiler-explorer.nvim'})
 
   if packer_bootstrap then
     require('packer').sync()
