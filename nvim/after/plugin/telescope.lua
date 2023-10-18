@@ -42,8 +42,8 @@ vim.keymap.set('n', '<C-h>', '<C-W>h',
                { desc = 'Move the cursor a window left' })
 vim.keymap.set('n', '<C-j>', '<C-W>j',
                { desc = 'Move the cursor a window down' })
-vim.keymap.set('n', '<C-k>', '<C-W>k',
-               { desc = 'Move the cursor a window up' })
+-- vim.keymap.set('n', '<C-k>', '<C-W>k',
+--                { desc = 'Move the cursor a window up' })
 vim.keymap.set('n', '<leader><leader>', '<C-^>',
                { desc = 'Alternate file' })
 vim.keymap.set('i', '<S-Right>', '<ESC><C-v>l',
