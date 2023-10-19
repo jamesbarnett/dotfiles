@@ -75,10 +75,13 @@ return require('packer').startup(function(use)
       },     -- Required
     }
   })
-  use('jbyuki/one-small-step-for-vimkind')
-  use('mfussenegger/nvim-dap')
+
+  use({"hrsh7th/cmp-buffer"})
+  use({"hrsh7th/cmp-path"})
+  use({"hrsh7th/cmp-nvim-lua"})
+  use({"mfussenegger/nvim-dap"})
   use({
-    'glepnir/dashboard-nvim',
+    "glepnir/dashboard-nvim",
     event = 'VimEnter',
     config = function()
       require('dashboard').setup {
@@ -98,7 +101,8 @@ return require('packer').startup(function(use)
   })
   use('tomblind/local-lua-debugger-vscode')
   use({ "elixir-tools/elixir-tools.nvim", tag = "stable",
-  requires = { "nvim-lua/plenary.nvim" }})
+    requires = { "nvim-lua/plenary.nvim" }})
+  use('jbyuki/one-small-step-for-vimkind')
   use({
     'goolord/alpha-nvim',
     config = function()
