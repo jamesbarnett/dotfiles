@@ -1,67 +1,57 @@
-local builtin = require('telescope.builtin')
+return {
+  {
+    "nvim-telescope/telescope-fzf-native.nvim",
+    build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
+  },
+  {
+    "nvim-telescope/telescope-ui-select.nvim",
+  },
+  {
+    "nvim-telescope/telescope.nvim",
+    tag = "0.1.5",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    config = function()
+      require("telescope").setup({
+        extensions = {
+          ["ui-select"] = {
+            require("telescope.themes").get_dropdown({}),
+          },
+        },
+      })
 
-vim.keymap.set('i', '<leader>w', '<C-o>:w<CR>',
-               { desc = [[Reevaluating this]] })
-vim.keymap.set('n', '<leader>w', ':w<CR>',
-               { desc = 'Save File', noremap = true })
+      local builtin = require("telescope.builtin")
+      vim.keymap.set("n", "<leader>sh", builtin.help_tags, { desc = "[S]earch [H]elp" })
+      vim.keymap.set("n", "<leader>sk", builtin.keymaps, { desc = "[S]earch [K]eymaps" })
+      vim.keymap.set("n", "<leader>sf", builtin.find_files, { desc = "[S]earch [F]iles" })
+      vim.keymap.set("n", "<leader>t", builtin.find_files, { desc = "[S]earch [F]iles" })
+      vim.keymap.set("n", "<leader>ss", builtin.builtin, { desc = "[S]earch [S]elect Telescope" })
+      vim.keymap.set("n", "<leader>sw", builtin.grep_string, { desc = "[S]earch current [W]ord" })
+      vim.keymap.set("n", "<leader>sg", builtin.live_grep, { desc = "[S]earch by [G]rep" })
+      vim.keymap.set("n", "<leader>sd", builtin.diagnostics, { desc = "[S]earch [D]iagnostics" })
+      vim.keymap.set("n", "<leader>sr", builtin.resume, { desc = "[S]earch [R]esume" })
+      vim.keymap.set("n", "<leader>s.", builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
+      vim.keymap.set("n", "<leader><leader>", builtin.buffers, { desc = "[ ] Find existing buffers" })
 
-vim.keymap.set("n", "<C-f>", "<C-f>zz",
-  { desc = "Move down half a screen and stay centered" })
+      pcall(require("telescope").load_extension, "fzf")
+      pcall(require("telescope").load_extension, "ui-select")
 
-vim.keymap.set("n", "<C-b>", "<C-b>zz",
-  { desc = "Move up half a screen and stay centered" })
+      vim.keymap.set("n", "<leader>/", function()
+        builtin.current_buffer_fuzzy_find(require("telescope.themes").get_dropdown({
+          winblend = 10,
+          previewer = false,
+        }))
+      end, { desc = "[/] Fuzzily search in current buffer" })
 
-local map = function(type, key, value)
-  vim.fn.nvim_buf_set_keymap(0, type, key, value, { noremap = true, silent = true });
-end
+      vim.keymap.set("n", "<leader>s/", function()
+        builtin.live_grep({
+          grep_open_files = true,
+          prompt_title = "Live Grep in Open Files",
+        })
+      end, { desc = "[S]earch [/] in Open Files" })
 
--- I want a way to quickly start working on my config. This is the event
--- handler for that.
-local edit_nvim_config_common = function()
-  vim.cmd ":cd ~/code/dotfiles/nvim/"
-  vim.cmd ":e lua/jbarnett/set.lua"
-  vim.cmd ":e lua/jbarnett/remap.lua"
-  vim.cmd ":e after/plugin/telescope.lua"
-  vim.cmd ":e lua/jbarnett/packer.lua"
-end
-
-local grep_handler = function()
-  builtin.grep_string({ search = vim.fn.input("Grep > ") },
-                      { desc = "Greppin' yer project!" })
-end
-
-vim.keymap.set('n', '<leader>t',
-               builtin.find_files,
-               { desc = "Find files starting in current directory" })
-
-vim.keymap.set('n', '<leader>dd', builtin.buffers,
-               { desc = "Open buffer list" })
-
-vim.keymap.set('n', '<leader>dc', edit_nvim_config_common,
-               { desc = "Edit packer, set, and remap" })
-vim.keymap.set('n', '<A-a>', '^')
-vim.keymap.set('n', '<A-e>', '$')
-vim.keymap.set('n', '<C-p>', '@:')
-vim.keymap.set('n', '<leader>fs', grep_handler)
-vim.keymap.set('n', 'Q', '<Nop>')
-vim.keymap.set('n', '<C-l>', '<C-W>l',
-               { desc = 'Move the cursor a window right' })
-vim.keymap.set('n', '<C-h>', '<C-W>h',
-               { desc = 'Move the cursor a window left' })
-vim.keymap.set('n', '<C-j>', '<C-W>j',
-               { desc = 'Move the cursor a window down' })
--- vim.keymap.set('n', '<C-k>', '<C-W>k',
---                { desc = 'Move the cursor a window up' })
-vim.keymap.set('n', '<leader><leader>', '<C-^>',
-               { desc = 'Alternate file' })
-vim.keymap.set('i', '<S-Right>', '<ESC><C-v>l',
-               { desc = 'Experimental insert/visual stuff' })
-vim.keymap.set('i', '<S-Left>', '<ESC><C-v>h',
-               { desc = 'Experimental insert/visual stuff' })
-vim.keymap.set('i', '<S-Down>', '<ESC><C-v>j',
-               { desc = 'Experimental insert/visual stuff' })
-vim.keymap.set('i', '<S-Up>', '<ESC><C-v>k',
-               { desc = 'Experimental insert/visual stuff' })
-vim.keymap.set('n', '<leader>yff', 'ggVG"+y', { desc = 'Yank entire buffer into +clipboard' })
-vim.keymap.set("n", "<leader>n", ":bnext<CR>", { desc = "Next buffer" })
-vim.keymap.set("n", "<leader>b", ":bprev<CR>", { desc = "Previous buffer" })
+      vim.keymap.set("n", "<leader>sn", function()
+        builtin.find_files({ cwd = vim.fn.stdpath("config") })
+      end, { desc = "[S]earch [N]eovim files" })
+    end,
+  },
+}
