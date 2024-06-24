@@ -36,8 +36,13 @@ return {
     config = function()
       local cmp_autopairs = require("nvim-autopairs.completion.cmp")
       local cmp = require("cmp")
-      require("luasnip.loaders.from_vscode").lazy_load()
+      local ls = require("luasnip")
 
+      require("luasnip.loaders.from_vscode").lazy_load()
+      require("luasnip").filetype_extend("ruby", { "rails" })
+      require("luasnip.loaders.from_lua").load({
+        paths = "./luasnippets",
+      })
       cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
       cmp.setup({
         snippet = {

@@ -10,6 +10,8 @@ vim.wo.number = true
 vim.wo.relativenumber = true
 vim.opt.numberwidth = 6
 vim.opt.scrolloff = 8
+vim.opt.sidescrolloff = 12
+
 vim.opt.showmode = false
 vim.opt.termguicolors = true
 vim.opt.cursorline = true

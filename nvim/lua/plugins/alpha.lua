@@ -6,7 +6,7 @@ return {
   config = function()
     local alpha = require("alpha")
     local dashboard = require("alpha.themes.startify")
-    -- require'alpha'.setup(require'alpha.themes.dashboard'.config)
+    require("alpha").setup(require("alpha.themes.dashboard").config)
     dashboard.section.header.val = {
       [[                                                                       ]],
       [[                                                                       ]],
