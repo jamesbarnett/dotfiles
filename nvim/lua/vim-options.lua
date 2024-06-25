@@ -24,13 +24,21 @@ vim.opt.updatetime = 50
 
 vim.keymap.set("n", "<leader>,", "<C-^>", { desc = "Alternate file" })
 vim.keymap.set("n", "<leader>w", ":w<CR>", { desc = "Save" })
-vim.keymap.set("n", "<leader>p", ":bprev<CR>", { desc = "Go to previous buffer" })
+vim.keymap.set("n", "<leader>p", ":bprev<CR>",
+  { desc = "Go to previous buffer" })
 vim.keymap.set("n", "<leader>P", ":bnext<CR>", { desc = "Go to next buffer" })
 vim.keymap.set("n", "Q", "<nop>", { desc = "Disable entering Ex mode" })
 vim.keymap.set("n", "<CR>", "<cmd>nohlsearch<CR>")
-vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous [D]iagnostic message" })
-vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next [D]iagnostic message" })
-vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show diagnostic [E]rror messages" })
-vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
-vim.keymap.set("n", "<C-f>", "<C-f>zz", { desc = "Move down half a screen and stay centered" })
-vim.keymap.set("n", "<C-b>", "<C-b>zz", { desc = "Move up half a screen and stay centered" })
+vim.keymap.set("n", "[d", vim.diagnostic.goto_prev,
+  { desc = "Go to previous [D]iagnostic message" })
+vim.keymap.set("n", "]d", vim.diagnostic.goto_next,
+  { desc = "Go to next [D]iagnostic message" })
+vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float,
+  { desc = "Show diagnostic [E]rror messages" })
+vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist,
+  { desc = "Open diagnostic [Q]uickfix list" })
+vim.keymap.set("n", "<C-f>", "<C-f>zz",
+  { desc = "Move down half a screen and stay centered" })
+vim.keymap.set("n", "<C-b>", "<C-b>zz",
+  { desc = "Move up half a screen and stay centered" })
+
