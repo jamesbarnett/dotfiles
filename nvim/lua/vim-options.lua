@@ -20,12 +20,11 @@ vim.opt.colorcolumn = "80"
 vim.opt.signcolumn = "yes"
 vim.opt.hlsearch = true
 vim.opt.incsearch = true
-vim.opt.updatetime = 50
+vim.opt.updatetime = 500
+vim.opt.timeoutlen = 250
 
-vim.keymap.set("n", "<leader>,", "<C-^>", { desc = "Alternate file" })
 vim.keymap.set("n", "<leader>w", ":w<CR>", { desc = "Save" })
-vim.keymap.set("n", "<leader>p", ":bprev<CR>",
-  { desc = "Go to previous buffer" })
+vim.keymap.set("n", "<leader>,", "<C-^>", { desc = "Alternate file" })
 vim.keymap.set("n", "<leader>P", ":bnext<CR>", { desc = "Go to next buffer" })
 vim.keymap.set("n", "Q", "<nop>", { desc = "Disable entering Ex mode" })
 vim.keymap.set("n", "<CR>", "<cmd>nohlsearch<CR>")
