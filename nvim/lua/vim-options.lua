@@ -22,8 +22,11 @@ vim.opt.hlsearch = true
 vim.opt.incsearch = true
 vim.opt.updatetime = 500
 vim.opt.timeoutlen = 250
+vim.opt.inccommand = "split"
+vim.ignorecase = true
+vim.opt.smartcase = true
 
-vim.keymap.set("n", "<leader>w", ":w<CR>", { desc = "Save" })
+vim.keymap.set("n", "<leader>w", "<CMD>w<CR>", { desc = "Save" })
 vim.keymap.set("n", "<leader>,", "<C-^>", { desc = "Alternate file" })
 vim.keymap.set("n", "<leader>P", ":bnext<CR>", { desc = "Go to next buffer" })
 vim.keymap.set("n", "Q", "<nop>", { desc = "Disable entering Ex mode" })
