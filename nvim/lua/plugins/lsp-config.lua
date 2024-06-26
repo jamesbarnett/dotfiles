@@ -17,7 +17,29 @@ return {
     "neovim/nvim-lspconfig",
     lazy = false,
     config = function()
-      local capabilities = require("cmp_nvim_lsp").default_capabilities()
+      vim.api.nvim_create_autocmd('LspAttach', {
+        group = vim.api.nvim_create_augroup('my-neovim-lsp-attach', { clear = true }),
+        callback = function(event)
+          local map = function(keys, func, desc)
+            vim.keymap.set("n", keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc })
+          end
+
+          map("gd", require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
+          map("gr", require('telescope.builtin').lsp_definitions, '[G]oto [R]eferences')
+          map("gI", require('telescope.builtin').lsp_definitions, '[G]oto [I]mplementation')
+          map("<leader>D", require('telescope.builtin').lsp_type_definitions, 'Type [D]efintion')
+          map("<leader>ds", require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
+          map("<leader>dw", require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
+          map("<leader>rn", vim.lsp_buf.rename, '[R]e[n]ame')
+          map("<leader>ca", vim.lsp.buf.code_action, '[C]ode [A]ction')
+          map("K", vim.lsp.buf.hover, 'Hover Documentation')
+        end
+      })
+
+      local capabilities = vim.lsp.protocol.make_client_capabilities()
+      capabilities = vim.tbl_deep_extend(
+        'force', capabilities, require("cmp_nvim_lsp").default_capabilities())
+
       local lspconfig = require("lspconfig")
 
       lspconfig.html.setup({
@@ -58,77 +80,3 @@ return {
     end,
   },
 }
---
--- return {
---   {
---     "neovim/nvim-lspconfig",
---     lazy = false,
---     dependencies = {
---       { "williamboman/mason.nvim", config = true }, -- NOTE: Must be loaded before dependants
---       "williamboman/mason-lspconfig.nvim",
---       "WhoIsSethDaniel/mason-tool-installer.nvim",
---       -- { "folke/neodev.nvim", opts = {} },
---     },
---     config = function()
---       local capabilities = require("cmp_nvim_lsp").default_capabilities()
---       local lspconfig = require("lspconfig")
---
---       lspconfig.lua_ls.setup({
---         capabilities = capabilities,
---       })
---       lspconfig.tsserver.setup({
---         capabilities = capabilities,
---       })
---       lspconfig.html.setup({
---         capabilities = capabilities,
---       })
---       -- lspconfig.cssls.setup({
---       --   capabilities = capabilities,
---       -- })
---
---       lspconfig.emmet_language_server.setup({
---         filetypes = {
---           "css",
---           "eruby",
---           "html",
---           "javascript",
---           "javascriptreact",
---           "less",
---           "sass",
---           "scss",
---           "pug",
---           "typescriptreact",
---         },
---
---         init_options = {
---           includeLanguages = {},
---           excludeLanguages = {},
---           extensionsPath = {},
---           preferences = {},
---           showAbbreviationSuggestions = true,
---           showExpandedAbbreviation = "always",
---           showSuggestionsAsSnippets = false,
---           syntaxProfiles = {},
---           variables = {},
---         },
---       })
---
---       capabilities = vim.lsp.protocol.make_client_capabilities()
---       capabilities.textDocument.completion.completionItem.snippetSupport = true
---
---       lspconfig.solargraph.setup({
---         capabilities = capabilities,
---       })
---
---       vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "LSP information" })
---       vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Go to definitions" })
---       vim.keymap.set("n", "gr", vim.lsp.buf.references, { desc = "Go to references" })
---       -- vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, { desc = "Code action" })
---     end,
---   },
--- }
--- --       vim.keymap.set("n", "gr", vim.lsp.buf.references, { desc = "Go to references" })
--- --       -- vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, { desc = "Code action" })
--- --     end,
--- --   },
--- -- }
