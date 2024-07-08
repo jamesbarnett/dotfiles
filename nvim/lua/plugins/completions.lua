@@ -38,12 +38,21 @@ return {
       require("luasnip.loaders.from_lua").load({
         paths = "./luasnippets",
       })
+
       cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
+
       cmp.setup({
         -- window = {
         --   completion = cmp.config.window.bordered(),
         --   documentation = cmp.config.window.bordered(),
         -- },
+        snippet = {
+          expand = function(args)
+            require("luasnip").lsp_expand(args.body)
+          end,
+        },
+
+        completion = { completeopt = 'menu,menuone,noinsert', },
 
         mapping = cmp.mapping.preset.insert({
           ["<C-n>"] = cmp.mapping.select_next_item(),
@@ -75,12 +84,6 @@ return {
           { name = "buffer", keyword_length = 5, },
         }),
 
-        snippet = {
-          expand = function(args)
-            require("luasnip").lsp_expand(args.body)
-          end,
-        },
-
         formatting = {
           format = lspkind.cmp_format({
             with_text = true,
@@ -97,7 +100,7 @@ return {
 
         experimental = {
           native_menu = false,
-          ghost_text = true,
+          -- ghost_text = true,
         }
       })
     end,

@@ -1,10 +1,21 @@
-vim.o.expandtab = true
-vim.o.tabstop = 4
-vim.o.softtabstop = 0
-vim.o.shiftwidth = 4
-
 vim.g.mapleader = " " -- Make sure to set `mapleader` before lazy so your mappings are correct
 vim.g.maplocalleader = " " -- Same for `maplocalleader`
+
+vim.scriptencoding = "utf-8"
+vim.opt.encoding = "utf-8"
+vim.opt.fileencoding = "utf-8"
+
+vim.opt.autoindent = true
+vim.opt.smartindent = true
+vim.opt.breakindent = true
+vim.opt.title = true
+vim.opt.wrap = false
+vim.opt.backup = false
+vim.opt.expandtab = true
+vim.opt.tabstop = 2
+vim.opt.softtabstop = 0
+vim.opt.shiftwidth = 2
+
 vim.opt.swapfile = false
 vim.wo.number = true
 vim.wo.relativenumber = true
@@ -25,12 +36,27 @@ vim.opt.timeoutlen = 250
 vim.opt.inccommand = "split"
 vim.ignorecase = true
 vim.opt.smartcase = true
+vim.opt.smartindent = true
+vim.opt.autoindent = true
+vim.opt.path:append({"**"})
+vim.opt.splitright = true
+vim.opt.splitbelow = true
+vim.opt.splitkeep = "cursor"
+vim.opt.wildignore:append({"*/node_modules/*"})
 
-vim.keymap.set("n", "<leader>w", "<CMD>w<CR>", { desc = "Save" })
+vim.keymap.set("n", "<leader>w", "<CMD>w<CR>", { desc = "Save", noremap = true, silent = true  })
+vim.keymap.set("n", "<leader>q", "<CMD>quit<CR>", { desc = "Quit", noremap = true, silent = true })
+vim.keymap.set("n", "<leader>Q", ":qa<CR>", { desc = "Quit", noremap = true, silent = true })
+
 vim.keymap.set("n", "<leader>,", "<C-^>", { desc = "Alternate file" })
 vim.keymap.set("n", "<leader>P", ":bnext<CR>", { desc = "Go to next buffer" })
 vim.keymap.set("n", "Q", "<nop>", { desc = "Disable entering Ex mode" })
 vim.keymap.set("n", "<CR>", "<cmd>nohlsearch<CR>")
+vim.keymap.set("n", "<C-S-r>", "<C-w><")
+vim.keymap.set("n", "<C-S-l>", "<C-w>>")
+vim.keymap.set("n", "<C-S-j>", "<C-w>-")
+vim.keymap.set("n", "<C-S-k>", "<C-w>+")
+
 vim.keymap.set("n", "[d", vim.diagnostic.goto_prev,
   { desc = "Go to previous [D]iagnostic message" })
 vim.keymap.set("n", "]d", vim.diagnostic.goto_next,
