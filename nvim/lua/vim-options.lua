@@ -70,3 +70,5 @@ vim.keymap.set("n", "<C-f>", "<C-f>zz",
 vim.keymap.set("n", "<C-b>", "<C-b>zz",
   { desc = "Move up half a screen and stay centered" })
 
+vim.g.better_escape_shortcut = {"jj", "jk", "kj"}
+
